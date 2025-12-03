@@ -7,12 +7,17 @@ export default class SequelizeIssueRepo implements IssueRepository {
         initDB();
     }
 
-    async create(issueDTO: IssueDTO): Promise<IssueModel> {
-        return await IssueModel.create({
+    async create(issueDTO: IssueDTO): Promise<Issue> {
+        const item= await IssueModel.create({
             title: issueDTO.title,
             description: issueDTO.description,
             status: issueDTO.status
         });
+        return <Issue>{id:item.id,
+                title:item.title,
+                description:item.description,
+                status:item.status
+            }
     }
 
     async update(id: number, issueDTO: IssueDTO): Promise<void> {

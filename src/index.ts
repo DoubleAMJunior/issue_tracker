@@ -19,19 +19,18 @@ app.get('/issues', async (req: Request, res: Response) => {
 
 app.delete('/issue',(req:Request,res:Response)=>{
   IssueRepo?.delete(req.body.id)
-  res.status(200)
+  res.status(200).json({ success: true, message: "ok" });
+
 })
 
-app.put('/issue',(req:Request,res:Response)=>{
-  IssueRepo?.create(req.body.dto)
-  res.status(200)
-  res.send("ok")
+app.put('/issue',async(req:Request,res:Response)=>{
+  const issue =await IssueRepo?.create(req.body.dto)
+  res.status(200).json(issue);
 })
 
 app.patch('/issue',(req:Request,res:Response)=>{
   IssueRepo?.update(req.body.id,req.body.dto)
-  res.status(200)
-  res.send("ok")
+  res.status(200).json({ success: true, message: "ok" });
 })
 app.get('/', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
