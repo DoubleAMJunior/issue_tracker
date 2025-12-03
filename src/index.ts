@@ -2,16 +2,18 @@ import express, { Express, Request, Response , Application } from 'express';
 import dotenv from 'dotenv';
 import getRepo from './Service/IssueRepoProvider';
 import cors from "cors";
+import path from 'path';
+
 //For env File 
 dotenv.config();
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
 app.use(cors());
-const IssueRepo= getRepo("memory")
+const IssueRepo= getRepo("sql")
 app.use(express.json());
-app.get('/issues', (req: Request, res: Response) => {
-  const issues=IssueRepo?.getList()
+app.get('/issues', async (req: Request, res: Response) => {
+  const issues= await IssueRepo?.getList()
   res.json(issues);
 });
 
@@ -21,7 +23,6 @@ app.delete('/issue',(req:Request,res:Response)=>{
 })
 
 app.put('/issue',(req:Request,res:Response)=>{
-  console.log(req)
   IssueRepo?.create(req.body.dto)
   res.status(200)
   res.send("ok")
@@ -29,8 +30,12 @@ app.put('/issue',(req:Request,res:Response)=>{
 
 app.patch('/issue',(req:Request,res:Response)=>{
   IssueRepo?.update(req.body.id,req.body.dto)
- res.status(200)
+  res.status(200)
+  res.send("ok")
 })
+app.get('/', (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server is Fire at https://localhost:${port}`);

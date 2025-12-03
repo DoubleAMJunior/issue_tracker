@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.19",
+    "@types/sequelize": "^6.12.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
@@ -19,6 +20,9 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "path": "^0.12.7",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7",
     "zustand": "^5.0.9"
   }
 }

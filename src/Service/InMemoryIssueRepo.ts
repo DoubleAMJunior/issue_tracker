@@ -12,7 +12,7 @@ export default class InMemoryIssueRepo implements IssueRepository{
     };
     create(issue:IssueDTO){
         this.issues.push(<Issue>{id:Math.random(),title:issue.title,description:issue.description,status:issue.status})};
-    getList(){return this.issues};
+    getList(){return Promise.resolve(this.issues);}
     delete(id:number){       
           this.issues=this.issues.filter(e=>e.id!== id);
         };

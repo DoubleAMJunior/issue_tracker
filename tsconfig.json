@@ -8,5 +8,12 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": [
+    "front/my-app",      
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
+  
 }

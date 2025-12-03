@@ -1,7 +1,7 @@
 export interface IssueRepository{
-    update:(id:number,issue:IssueDTO    )=>void
+    update:(id:number,issue:IssueDTO)=>void
     create:(issue:IssueDTO)=>void
-    getList:()=>Issue[]
+    getList:()=>Promise<Issue[]>
     delete:(id:number)=>void
 }
 
