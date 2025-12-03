@@ -4,14 +4,16 @@ import getRepo from './Service/IssueRepoProvider';
 import cors from "cors";
 import path from 'path';
 
-//For env File 
+
 dotenv.config();
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
 app.use(cors());
-const IssueRepo= getRepo("sql")
+console.log("database type is " + (process.env.DATABASE ||"sql"))
+const IssueRepo= getRepo(process.env.DATABASE ||"sql")
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "build")));
 app.get('/issues', async (req: Request, res: Response) => {
   const issues= await IssueRepo?.getList()
   res.json(issues);

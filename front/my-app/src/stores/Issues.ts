@@ -1,5 +1,5 @@
 import { StateCreator } from "zustand";
-const baseAddress="http://localhost:8000"
+const baseAddress="."
 export interface Issue{
     id:number|undefined,
     title:string,
