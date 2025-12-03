@@ -1,0 +1,12 @@
+node_modules
+**/node_modules
+front/my-app/node_modules
+
+dist
+build
+**/build
+
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
